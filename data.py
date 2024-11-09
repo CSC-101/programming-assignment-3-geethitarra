@@ -37,3 +37,10 @@ class CountyDemographics:
                 self.population,
                 self.state
             )
+
+    def __eq__(self, other):
+        if not isinstance(other, CountyDemographics):
+            return False
+        return (self.state == other.state and
+                self.county == other.county and
+                self.income == other.income)
