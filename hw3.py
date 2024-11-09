@@ -8,10 +8,13 @@ def population_total(population: list[CountyDemographics])->int:
             total_population += county.population['2014 Population']
 
     return total_population
+#The purpose of this function is to take in a list of the counties of type CountyDemographics and return the total population is 2014 for all the counties.
 
 #Part 2
 def filter_by_state(all_counties: list[CountyDemographics], state: str) -> list[CountyDemographics]:
     return [county for county in all_counties if county.state == state]
+#The purpose of this function is to take in a list of the counties of type CountyDemographics along with a selected state (type string) and return only all the objects that match the state.
+
 
 #Part 3
 def population_by_education(counties: list[CountyDemographics], education: str) -> float:
@@ -22,9 +25,9 @@ def population_by_education(counties: list[CountyDemographics], education: str) 
             percentage = county.education[education]
             population += county.population['2014 Population'] * (percentage / 100)
     return population
+#The purpose of this function is to take in a list of the counties of type CountyDemographics along with an education level of type string (key) and return the total 2014 subpopulation across the set of counties that matches the key.
 
-
-def population_by_ethnicity(counties, ethnicity_key):
+def population_by_ethnicity(counties:list[CountyDemographics], ethnicity_key: str) -> int:
     population = 0
     for county in counties:
         ethnicity = county.ethnicities
@@ -32,6 +35,7 @@ def population_by_ethnicity(counties, ethnicity_key):
             population += ethnicity[ethnicity_key]
 
     return population
+#The purpose of this function is to take in a list of the counties of type CountyDemographics along with an ethnicity of choice (type str) and only output the total 2014 subpopulation across the set of counties that matches the key/ethnicity.
 
 def population_below_poverty_level(counties: list[CountyDemographics]) -> float:
     below_poverty = 0.0
@@ -42,6 +46,7 @@ def population_below_poverty_level(counties: list[CountyDemographics]) -> float:
         below_poverty += county_population * (poverty_percentage / 100)
 
     return below_poverty
+#The purpose of this function is to take in a list of the counties of type CountyDemographics and return the number of people below the poverty level.
 
 #Part 4
 def percent_by_education(counties: list[CountyDemographics], education: str) -> float:
@@ -50,7 +55,7 @@ def percent_by_education(counties: list[CountyDemographics], education: str) -> 
         population += county.population['2014 Population']
     education_population = population_by_education(counties, education)
     return (education_population/population) * 100
-
+#The purpose of this function is to take in a list of the counties of type CountyDemographics along with a level of education of type string and return a float percentage value of 2014 subpopulation with that level of education.
 
 def percent_by_ethnicity(counties: list[CountyDemographics], ethnicity: str) -> float:
     population = 0
@@ -65,6 +70,7 @@ def percent_by_ethnicity(counties: list[CountyDemographics], ethnicity: str) -> 
         return 0
 
     return (ethnicity_population/population) * 100
+#The purpose of this function is to take in a list of the counties of type CountyDemographics along with an ethnicity of type string and return a float percentage value of 2014 subpopulation with that ethnicity.
 
 def percent_below_poverty_level(counties: list[CountyDemographics]) -> float:
     population = 0.0
@@ -77,6 +83,7 @@ def percent_below_poverty_level(counties: list[CountyDemographics]) -> float:
         return below_poverty/population * 100
     else:
         return 0.0
+#The purpose of this function is to take in a list of the counties of type CountyDemographics and return a float percentage value of 2014 subpopulation under the poverty level.
 
 #Part 5
 def education_greater_than(counties: list[CountyDemographics], education_key: str, threshold: float) -> list[CountyDemographics]:
@@ -87,6 +94,7 @@ def education_greater_than(counties: list[CountyDemographics], education_key: st
         if education_value > threshold:
             result.append(county)
     return result
+#The purpose of this function is to take in a list of the counties of type CountyDemographics, an education level which is a key of type string, and a threshold of type float. If the education level for each object is above the threshold it will be returned as a list object.
 
 def education_less_than(counties: list[CountyDemographics], education_key: str, threshold: float) -> list[CountyDemographics]:
     result = []
@@ -96,6 +104,8 @@ def education_less_than(counties: list[CountyDemographics], education_key: str, 
         if education_value < threshold:
             result.append(county)
     return result
+#The purpose of this function is to take in a list of the counties of type CountyDemographics, an education level which is a key of type string, and a threshold of type float. If the education level for each object is below the threshold it will be returned as a list object.
+
 
 def ethnicity_greater_than(counties: list[CountyDemographics], ethnicity_key: str, threshold: float) -> list[CountyDemographics]:
     result = []
@@ -105,6 +115,8 @@ def ethnicity_greater_than(counties: list[CountyDemographics], ethnicity_key: st
         if ethnicity_value > threshold:
             result.append(county)
     return result
+#The purpose of this function is to take in a list of the counties of type CountyDemographics, an ethnicity which is a key of type string, and a threshold of type float. If the percent of the population with that ethnicity for each object is greater than the threshold it will be returned as a list object.
+
 
 def ethnicity_less_than(counties: list[CountyDemographics], ethnicity_key: str, threshold: float) -> list[CountyDemographics]:
     result = []
@@ -114,7 +126,7 @@ def ethnicity_less_than(counties: list[CountyDemographics], ethnicity_key: str, 
         if ethnicity < threshold:
             result.append(county)
     return result
-
+#The purpose of this function is to take in a list of the counties of type CountyDemographics, an ethnicity which is a key of type string, and a threshold of type float. If the percent of the population with that ethnicity for each object is less than the threshold it will be returned as a list object.
 
 def below_poverty_level_greater_than(counties: list[CountyDemographics], threshold: float) -> list[CountyDemographics]:
     result = []
@@ -124,6 +136,7 @@ def below_poverty_level_greater_than(counties: list[CountyDemographics], thresho
             result.append(county)
 
     return result
+#The purpose of this function is to take in a list of the counties of type CountyDemographics and a threshold of type float. If the percent of the population below the poverty level for the object is greater than the threshold it will be returned as a list object.
 
 def below_poverty_level_less_than(counties: list[CountyDemographics], threshold: float) -> list[CountyDemographics]:
     result = []
@@ -133,3 +146,4 @@ def below_poverty_level_less_than(counties: list[CountyDemographics], threshold:
             result.append(county)
 
     return result
+#The purpose of this function is to take in a list of the counties of type CountyDemographics and a threshold of type float. If the percent of the population below the poverty level for the object is less than the threshold it will be returned as a list object.

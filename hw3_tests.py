@@ -277,9 +277,19 @@ class TestCases(unittest.TestCase):
         expected_counties = [reduced_data[3]]
         self.assertEqual(result, expected_counties)
 
+    def test_education_greater_than2(self):
+        result = hw3.education_greater_than(california, "Bachelor's Degree or Higher", 50.0)
+        expected_counties = []
+        self.assertEqual(result, expected_counties)
+
     def test_education_less_than(self):
         result = hw3.education_less_than(reduced_data, "Bachelor's Degree or Higher", 15.0)
         expected_counties = [reduced_data[1]]
+        self.assertEqual(result, expected_counties)
+
+    def test_education_less_than2(self):
+        result = hw3.education_less_than(reduced_data, "Bachelor's Degree or Higher", 1.0)
+        expected_counties = []
         self.assertEqual(result, expected_counties)
 
     def test_ethnicity_greater_than(self):
@@ -287,9 +297,19 @@ class TestCases(unittest.TestCase):
         expected_counties = [reduced_data[3]]
         self.assertEqual(result, expected_counties)
 
+    def test_ethnicity_greater_than2(self):
+        result = hw3.ethnicity_greater_than(california, 'Hispanic or Latino', 90.0)
+        expected_counties = []
+        self.assertEqual(result, expected_counties)
+
     def test_ethnicity_less_than(self):
         result = hw3.ethnicity_less_than(reduced_data, 'Hispanic or Latino', 3.0)
         expected_counties = [reduced_data[0]]
+        self.assertEqual(result, expected_counties)
+
+    def test_ethnicity_less_than2(self):
+        result = hw3.ethnicity_less_than(reduced_data, 'Hispanic or Latino', 2.0)
+        expected_counties = []
         self.assertEqual(result, expected_counties)
 
     def test_below_poverty_level_greater_than(self):
@@ -320,8 +340,13 @@ class TestCases(unittest.TestCase):
         result = hw3.below_poverty_level_greater_than(california, 15)
         self.assertEqual(expected, result)
 
+    def test_below_poverty_level_greater_than2(self):
+        expected = []
+        result = hw3.below_poverty_level_greater_than(california, 50)
+        self.assertEqual(expected, result)
+
     def test_below_poverty_level_less_than(self):
-        expected = [ data.CountyDemographics(
+        expected = [data.CountyDemographics(
         {'Percent 65 and Older': 17.5,
          'Percent Under 18 Years': 18.1,
          'Percent Under 5 Years': 4.8},
@@ -345,6 +370,11 @@ class TestCases(unittest.TestCase):
          'Population per Square Mile': 81.7},
         'CA'),]
         result = hw3.below_poverty_level_less_than(california, 15)
+        self.assertEqual(expected, result)
+
+    def test_below_poverty_level_less_than2(self):
+        expected = []
+        result = hw3.below_poverty_level_less_than(california, 10)
         self.assertEqual(expected, result)
 
 
